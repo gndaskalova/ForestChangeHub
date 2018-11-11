@@ -41,11 +41,23 @@ Extracted through the Google Earth Engine
 _Please note that the majority of the code was written to run on a HPC cluster and thus requires high computing power to successfully run._
 
 ```
-+ 01-population-models.R calculates population change trends using state-space models
-+ 02-richness-models.R calculates richness chaneg over time using a Bayesian hiearchical framework
-+ 03-before-after-peak-forest-loss-models.R tests if population and biodiversity change differ before and after contemporary peak forest loss
-+ 04-forest-cover-change-continuous-models.R tests the relationships between forest loss, forest gain and population and biodiversity change
-+ 05-models-lags.R tests if population and biodiversity change lags following peak forest loss are longer for species with longer generation times
++ 01-population-models.R 
+# Calculates population change trends using state-space models
+
++ 02-richness-models.R 
+# Calculates richness chaneg over time using a Bayesian hiearchical framework
+
++ 03-before-after-peak-forest-loss-models.R 
+# Tests if population and biodiversity change differ 
+# before and after contemporary peak forest loss
+
++ 04-forest-cover-change-continuous-models.R 
+# Tests the relationships between forest loss, forest gain and 
+# population and biodiversity change
+
++ 05-models-lags.R 
+# Tests if population and biodiversity change lags following 
+# peak forest loss are longer for species with longer generation times
 ```
 
 # Requirements
