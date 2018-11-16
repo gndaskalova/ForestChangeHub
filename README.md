@@ -1,13 +1,11 @@
 # ForestChangeHub
-Code for population, biodiversity & forest cover change attribution analysis
+Code for population, biodiversity & forest cover change attribution analyses
 
-_This repository contains code necessary to replicate data analysis, figures, and tables for the manuscript "Forest loss does not universally lead to population and biodiversity declines".__
-
-It is archived on Zenodo at : __INSERT__
-
-Disclaimer: The project and related code in this repository represent one version of the code developed for the project, and may undergo future changes and revisions.
+_This repository contains code necessary to replicate data analysis, figures, and tables for "Forest loss as a catalyst of population and biodiversity change"._
 
 Authors: Gergana Daskalova, Isla Myers-Smith, Anne Bjorkman, Sarah Supp, Shane Blowes, Anne Magurran, Maria Dornelas
+
+Disclaimer: The project and related code in this repository represent one version of the code developed for the project, and may undergo future changes and revisions.
 
 #### Contact: Gergana Daskalova gndaskalova@gmail.com
 
