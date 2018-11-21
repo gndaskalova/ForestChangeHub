@@ -37,7 +37,7 @@ load("data/output/mus_luh.RData")
 ##	set some weakly regularising priors
 hier_prior_random <- c(set_prior(prior = 'normal(0,6)', class='b', coef='forest.diff_scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 		# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))								# group-level intercepts
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 mus_luh_pos <- filter(mus_luh, mu > 0)
 mus_luh_pos <- mus_luh_pos %>% filter(forest.diff > 0.05)
