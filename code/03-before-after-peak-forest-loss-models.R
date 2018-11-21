@@ -44,7 +44,7 @@ summary(mus_periods_neg$min_years.scaled)  # centered on zero
 # Set priors
 hier_prior_random <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 # Biome random effect included to account for the spatial clustering of the data
 
@@ -105,7 +105,7 @@ mus_period1 <- distinct(mus_period1)
 hier_prior_random3 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='b', coef='max.loss.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd')) 	# group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd')) 	# group-level intercepts
 
 mus_period1$max.loss <- abs(as.numeric(mus_period1$max.loss))
 mus_period1$max.loss.scaled <- scale(mus_period1$max.loss, center = T)
@@ -125,9 +125,6 @@ summary(ba_pop_magnitude)
 plot(ba_pop_magnitude)
 save(ba_pop_magnitude, file = "data/output/ba_pop_magnitude2018.RData")
 
-plot(marginal_effects(ba_pop_magnitude))
-summary(ba_pop_magnitude)[17]
-
 # ** Magnitude of pop change ----
 # Are trends becoming more acute?
 mus_pos_p <- filter(mus_period1, mu > 0)
@@ -138,7 +135,7 @@ mus_pos_p$years_scaled <- scale(mus_pos_p$End, center = T)
 # Models
 higher_prior_random5 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='years_scaled'), 	# global slope
                           set_prior(prior = 'normal(0,6)', class='Intercept', coef=''),  # global intercept
-                          set_prior(prior = 'cauchy(0,2)', class='sd'))	 # group-level intercepts and slopes
+                          set_prior(prior = 'cauchy(0,2)', class='sd'))	 # group-level intercepts
 
 # Testing if the difference in population change on the individual time series
 # level before and after peak forest loss is different from zero
@@ -154,6 +151,8 @@ ind_pop_pos <- brm(bf(diff ~ 1 + years_scaled  +
                    cores = 2, chains = 2)
 
 summary(ind_pop_pos)
+plot(ind_pop_pos)
+save(ind_pop_pos, file = "data/output/ind_pop_pos2018.RData")
 
 # For the decreasing populations
 mus_neg_p$years_scaled <- scale(mus_neg_p$End, center = T)
@@ -167,7 +166,33 @@ ind_pop_neg <- brm(bf(diff ~ 1 + years_scaled +
                    control = list(adapt_delta = 0.89),
                    cores = 2, chains = 2)
 
+# Check model and save output
 summary(ind_pop_neg)
+plot(ind_pop_neg)
+save(ind_pop_neg, file = "data/output/ind_pop_neg2018.RData")
+
+# Population change before, during & after historic all time peak forest loss
+load("data/output/mus_bf_af_during.RData")
+
+# Set prior
+prior_bf_af_du <- c(set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
+
+mus_bf_af_during$period <- factor(mus_bf_af_during$period,
+                                  levels = c("Before", "During", "After"),
+                                  labels = c("Before", "During", "After"))
+
+pop_bf_af_du <- brm(bf(mu ~ period + (1|biome)), 
+                    data = mus_bf_af_during, 
+                    prior = prior_bf_af_du, iter = 6000,
+                    warmup = 2000,
+                    inits = '0',
+                    control = list(adapt_delta = 0.89), # use 0.80 for early model runs, and increase
+                    cores = 2, chains = 2)
+
+# Check model and save output
+summary(pop_bf_af_du)
+plot(pop_bf_af_du)
+save(pop_bf_af_du, file = "data/output/pop_bf_af_du2018.RData")
 
 # Sp richness change before/after ----
 load("data/output/slopes_period1.RData")
@@ -203,7 +228,7 @@ slopes_periods_pos$period <- factor(slopes_periods_pos$period,
 # Set priors
 hier_prior_random_sp <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
                           set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                          set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts and slopes
+                          set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts
 
 load("data/input/min_years_bt.RData")  
 # min_years is the duration of biodiversity monitoring 
@@ -315,7 +340,7 @@ slopes_period1 <- inner_join(slopes_period1, min_years, by = "rarefyID") %>%
 hier_prior_random3 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='b', coef='max.loss.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts
 
 slopes_period1$max.loss <- abs(slopes_period1$max.loss)
 slopes_period1$max.loss.scaled <- scale(slopes_period1$max.loss, center = T)
@@ -394,7 +419,7 @@ prior2b <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'
              set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 		# global intercept
              set_prior("normal(0,.5)", class = "Intercept", dpar = "zoi"),
              set_prior("normal(0,.5)", class = "Intercept", dpar = "coi"), 	
-             set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+             set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 # zoi refers to the probability of being a zero or a one
 
@@ -429,7 +454,7 @@ save(ba_tu, file = "data/output/ba_tu2018.RData")
 hier_prior_random3 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='b', coef='max.loss.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 		# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd'))  # group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd'))  # group-level intercepts
 
 # Join with data on magnitude of peak loss
 tu_even1b <- left_join(tu_even1b, luh_polys_max, by = "rarefyID")
@@ -473,7 +498,7 @@ save(ba_tu_magnitude, file = "data/output/ba_tu_magnitude2018.RData")
 # Set prior
 prior_diff <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd'))  # group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd'))  # group-level intercepts
 
 # Test if the difference in turnover before/after forest loss is different from zero
 ba_diff <- brm(bf(diff ~ 1 + min_years.scaled + 
