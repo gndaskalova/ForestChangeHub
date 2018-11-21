@@ -37,7 +37,7 @@ load("data/output/mus_luh.RData")
 ##	set some weakly regularising priors
 hier_prior_random <- c(set_prior(prior = 'normal(0,6)', class='b', coef='forest.diff_scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 		# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))								# group-level intercepts and slopes
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))								# group-level intercepts
 
 mus_luh_pos <- filter(mus_luh, mu > 0)
 mus_luh_pos <- mus_luh_pos %>% filter(forest.diff > 0.05)
@@ -84,7 +84,7 @@ summary(lpi_mu_hansen_pos2$sum_gain_km_scaled)
 # Set priors
 hier_prior_random <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_gain_km_scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts and slopes
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts
 
 hansen_pop_gain_pos <- brm(bf(mu ~ sum_gain_km_scaled + (1|biome)), 
                            data = lpi_mu_hansen_pos2, 
@@ -109,7 +109,7 @@ summary(lpi_mu_hansen_neg2$sum_gain_km_scaled)
 # Set priors
 hier_prior_random <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_gain_km_scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 hansen_pop_gain_neg <- brm(bf(mu ~ sum_gain_km_scaled + (1|biome)), 
                            data = lpi_mu_hansen_neg2, 
@@ -130,7 +130,7 @@ save(hansen_pop_gain_neg, file = "data/output/hansen_pop_gain_neg2018.RData")
 # Set priors
 hier_prior_random2 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_loss_km_scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts
 
 lpi_mu_hansen_pos3 <- lpi_mu_hansen %>% filter(mu > 0)
 lpi_mu_hansen_pos3 <- filter(lpi_mu_hansen_pos3, sum_loss_km > 0.5)
@@ -175,7 +175,7 @@ load("data/input/mus_luh_habitat.RData")
 #	Set priors
 hier_prior_random <- c(set_prior(prior = 'normal(0,6)', class='b', coef='forest.diff_scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 mus_luh_pos_hab <- filter(mus_luh_habitats, mu > 0)
 mus_luh_pos_hab <- mus_luh_pos_hab %>% filter(forest.diff > 0.05)
@@ -223,7 +223,7 @@ slopes_luh_pos$forest.diff_scaled <- scale(slopes_luh_pos$forest.diff, center = 
 # Set priors
 hier_prior_random_b <- c(set_prior(prior = 'normal(0,6)', class='b', coef='forest.diff_scaled'), 	# global slope
                        set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+                       set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 sp_luh_cont_pos <- brm(bf(slope ~ forest.diff_scaled + (1|Biome)), 
                        data = slopes_luh_pos, 
@@ -276,7 +276,7 @@ slopes_forest_pos2$sum_gain_km_scaled <- scale(slopes_forest_pos2$sum_gain_km, c
 # Set priors
 hier_prior_random4 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_gain_km_scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd'))	 # group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd'))	 # group-level intercepts
 
 hansen_sp_gain_pos <- brm(bf(slope ~ sum_gain_km_scaled + (1|Biome)), 
                           data = slopes_forest_pos2, 
@@ -317,7 +317,7 @@ save(hansen_sp_gain_neg, file = "data/output/hansen_sp_gain_neg2018.RData")
 # Set prior
 hier_prior_random2 <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_loss_km_scaled'), 	# global slope
                         set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
-                        set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts and slopes
+                        set_prior(prior = 'cauchy(0,2)', class='sd'))		# group-level intercepts
 
 slopes_forest_pos <- filter(slopes_forest, slope > 0)
 slopes_forest_pos3 <- filter(slopes_forest_pos, sum_loss_km > 0.5)
@@ -380,7 +380,7 @@ prior2b <- c(set_prior(prior = 'normal(0,6)', class='b', coef='forest.diff_scale
              set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
              set_prior("normal(0,.5)", class = "Intercept", dpar = "zoi"),
              set_prior("normal(0,.5)", class = "Intercept", dpar = "coi"), 		
-             set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+             set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 # zoi refers to the probability of being a zero or a one
 
@@ -426,7 +426,7 @@ prior4b <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_gain_km_scale
              set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
              set_prior("normal(0,.5)", class = "Intercept", dpar = "zoi"),
              set_prior("normal(0,.5)", class = "Intercept", dpar = "coi"), 		
-             set_prior(prior = 'cauchy(0,2)', class='sd'))  	# group-level intercepts and slopes
+             set_prior(prior = 'cauchy(0,2)', class='sd'))  	# group-level intercepts
 
 slopes_forest6 <- filter(slopes_forest, sum_gain_km > 0.5)
 slopes_forest6$sum_gain_km_scaled <- scale(slopes_forest6$sum_gain_km, center = T)
@@ -453,7 +453,7 @@ prior3b <- c(set_prior(prior = 'normal(0,6)', class='b', coef='sum_loss_km_scale
              set_prior(prior = 'normal(0,6)', class='Intercept', coef=''), 	# global intercept
              set_prior("normal(0,.5)", class = "Intercept", dpar = "zoi"),
              set_prior("normal(0,.5)", class = "Intercept", dpar = "coi"), 		
-             set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts and slopes
+             set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 Jtu_hansen_loss_cont <- brm(bf(final_tu ~ sum_loss_km_scaled + (1|Biome), 
                                coi ~1, zoi ~ 1),
