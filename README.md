@@ -1,7 +1,7 @@
 # ForestChangeHub
 Code for population, biodiversity & forest cover change attribution analyses
 
-_This repository contains code necessary to replicate data analysis, figures, and tables for "Forest loss as a catalyst of population and biodiversity change"._
+_This repository contains the code for the statistical analyses in "Forest loss as a catalyst of population and biodiversity change"._
 
 Authors: Gergana Daskalova, Isla Myers-Smith, Anne Bjorkman, Sarah Supp, Shane Blowes, Anne Magurran, Maria Dornelas
 
