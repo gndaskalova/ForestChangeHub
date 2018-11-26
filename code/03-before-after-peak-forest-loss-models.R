@@ -186,7 +186,7 @@ pop_bf_af_du <- brm(bf(mu ~ period + (1|biome)),
                     prior = prior_bf_af_du, iter = 6000,
                     warmup = 2000,
                     inits = '0',
-                    control = list(adapt_delta = 0.89), # use 0.80 for early model runs, and increase
+                    control = list(adapt_delta = 0.89),
                     cores = 2, chains = 2)
 
 # Check model and save output
