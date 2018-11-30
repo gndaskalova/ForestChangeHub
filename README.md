@@ -43,7 +43,7 @@ _Please note that the majority of the code was written to run on a HPC cluster a
 # Calculates population change trends using state-space models
 
 + 02-richness-models.R 
-# Calculates richness chaneg over time using a Bayesian hiearchical framework
+# Calculates richness change over time using a Bayesian hiearchical framework
 
 + 03-before-after-peak-forest-loss-models.R 
 # Tests if population and biodiversity change differ 
