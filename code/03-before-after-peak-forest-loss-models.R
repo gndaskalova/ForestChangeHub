@@ -175,13 +175,14 @@ save(ind_pop_neg, file = "data/output/ind_pop_neg2018.RData")
 load("data/output/mus_bf_af_during.RData")
 
 # Set prior
-prior_bf_af_du <- c(set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
+prior_bf_af_du <- c(set_prior(prior = 'normal(0,6)', class='b', coef='min_years.scaled'), 	# global slope
+                    set_prior(prior = 'cauchy(0,2)', class='sd'))	# group-level intercepts
 
 mus_bf_af_during$period <- factor(mus_bf_af_during$period,
                                   levels = c("Before", "During", "After"),
                                   labels = c("Before", "During", "After"))
 
-pop_bf_af_du <- brm(bf(mu ~ period + (1|biome)), 
+pop_bf_af_du <- brm(bf(mu ~ period + min_years.scaled + (1|biome)), 
                     data = mus_bf_af_during, 
                     prior = prior_bf_af_du, iter = 6000,
                     warmup = 2000,
@@ -301,7 +302,7 @@ ba_sp_neg <- brm(bf(rarefyID.Estimate.year.scaled ~ period + min_years.scaled +
                  iter = 6000,
                  warmup = 2000,
                  inits = '0',
-                 control = list(adapt_delta = 0.89), # use 0.80 for early model runs, and increase
+                 control = list(adapt_delta = 0.89),
                  cores = 2, chains = 2)
 
 # Check model and save output
@@ -486,7 +487,7 @@ ba_tu_magnitude <- brm(bf(diff ~ max.loss.scaled + min_years.scaled +
                        prior = hier_prior_random3, iter = 6000,
                        warmup = 2000,
                        inits = '0',
-                       control = list(adapt_delta = 0.89), # use 0.80 for early model runs, and increase
+                       control = list(adapt_delta = 0.89), 
                        cores = 2, chains = 2)
 
 # Check model and save output
@@ -507,7 +508,7 @@ ba_diff <- brm(bf(diff ~ 1 + min_years.scaled +
                        prior = prior_diff, iter = 6000,
                        warmup = 2000,
                        inits = '0',
-                       control = list(adapt_delta = 0.89), # use 0.80 for early model runs, and increase
+                       control = list(adapt_delta = 0.89),
                        cores = 2, chains = 2)
 # Check model
 summary(ba_diff)
