@@ -1,11 +1,9 @@
 # ForestChangeHub
 Code for population, biodiversity & forest cover change attribution analyses
 
-_This repository contains the code for the statistical analyses in "Forest loss as a catalyst of population and biodiversity change"._
+_This repository contains the code for the statistical analyses in "Landscape-scale forest loss as a catalyst of population and biodiversity change"._
 
 Authors: Gergana Daskalova, Isla Myers-Smith, Anne Bjorkman, Sarah Supp, Shane Blowes, Anne Magurran, Maria Dornelas
-
-Disclaimer: The project and related code in this repository represent one version of the code developed for the project, and may undergo future changes and revisions.
 
 #### Contact: Gergana Daskalova gndaskalova@gmail.com
 
@@ -15,13 +13,13 @@ Disclaimer: The project and related code in this repository represent one versio
 The population time series analysed here came from the Living Planet Database, publicly available from http://www.livingplanetindex.org
 
 ### BioTIME
-The biodiversity time series analysed here came from 332 unique references found in the BioTIME dataset and in other studies which were used with permission.
+The biodiversity time series analysed here came from the BioTIME Database. Approximately 92% of the biodiversity studies analysed here are available as part of the published BioTIME Database. The data are openly available, and can be accessed on Zenodo (https://doi.org/10.5281/zenodo.1211105) or through the BioTIME website (http://biotime.st-andrews.ac.uk/). The remaining 8% of the studies were used with permission, with details on how to download those data available in the supplementary information.
 
-Approximately 92% (306 references) of the biodiversity studies analysed here are available as part of the published BioTIME Database28. The data are openly available, and can be accessed on Zenodo (https://doi.org/10.5281/zenodo.1211105) or through the BioTIME website (http://biotime.st-andrews.ac.uk/).
+The public studies that were included in the version of BioTIME we analyzed can be downloaded from http://biotime.st-andrews.ac.uk/BioTIME_download.php
+
+For more information about the BioTIME database, please see:
 
 Dornelas, M., L.H. Antao, F. Moyes, A.E. Bates, A.E. Magurran, and BioTIME consortium (200+ authors). 2018. BioTIME: a database of biodiversity time-series for the Anthropocene. Global Ecology and Biogeography. 10.1111/geb.12729
-
-The remaining 8% (26 references) of biodiversity studies analysed were used with permission. Some of these studies are published and publicly available outside of the BioTIME database, and others are available with permission from the corresponding author on reasonable request. For more details regarding the original citations, corresponding authors, and availability of these datasets, please refer to Table S1 in Dornelas et al. (2018).
 
 ### Land Use Harmonisation Dataset
 Available from http://luh.umd.edu
