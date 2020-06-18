@@ -1,5 +1,8 @@
 # MODIS transitions
 setwd("~/Downloads/modis biotime")
+# Files stored locally - extracted with the Google Earth Engine
+# see script 02-modis.js for reference
+
 
 temp = list.files(pattern="*.csv")
 list2env(
