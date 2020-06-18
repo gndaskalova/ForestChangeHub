@@ -54,6 +54,7 @@ coords2 <- global_mus_scaled %>% filter(system == "Terrestrial") %>%
   dplyr::select(id, Decimal.Latitude, Decimal.Longitude) %>%
   distinct()
 
+# Makes for cells of approximately 96km2, with variation due to the Earth's curvature
 coords2$atop <- coords2$Decimal.Latitude + 0.04413495
 coords2$bottom <- coords2$Decimal.Latitude - 0.04413495
 coords2$leftb <- coords2$Decimal.Longitude - 0.04413495
