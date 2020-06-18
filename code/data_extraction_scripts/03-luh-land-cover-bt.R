@@ -52,6 +52,7 @@ coords <- rarefied_medians %>% filter(REALM == "Terrestrial") %>%
   distinct()
 
 # Creating corners at the appropriate locations around the locations of the time-series
+# Makes for cells of approximately 96km2, with variation due to the Earth's curvature
 coords$atop <- coords$rarefyID_y + 0.04413495
 coords$bottom <- coords$rarefyID_y - 0.04413495
 coords$leftb <- coords$rarefyID_x - 0.04413495
