@@ -50,3 +50,5 @@ index.lock
 .httr-oauth
 # Ignore Rplots.pdf files
 Rplots.pdf
+.Rproj.user
+ForestChangeHub.Rproj
