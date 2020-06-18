@@ -51,6 +51,7 @@ coords <- rarefied_medians %>% filter(REALM == "Terrestrial") %>%
 
 coords2 <- coords
 
+# Makes for cells of approximately 96km2, with variation due to the Earth's curvature
 coords2$atop <- coords2$rarefyID_y + 0.04413495
 coords2$bottom <- coords2$rarefyID_y - 0.04413495
 coords2$leftb <- coords2$rarefyID_x - 0.04413495
