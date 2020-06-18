@@ -12,15 +12,15 @@ plot(esa)
 names(esa)
 summary(esa[1])
 
+# Going back to the repository
 setwd("~/LandUseHub")
 
-# Seeing what happens if I extract for a few points
-
+# Loading coordinates
 load("~/LandUseHub/data/input/rarefied_mediansOct2017.Rdata")
 
-baby_bt <- rarefied_medians[1:6,]
+bt <- rarefied_medians
 
-coords_sp <- SpatialPoints(cbind(baby_bt$rarefyID_x, baby_bt$rarefyID_y), 
+coords_sp <- SpatialPoints(cbind(bt$rarefyID_x, bt$rarefyID_y), 
                            proj4string = CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
 
 # Transforming coordinate system to that of the driver data
