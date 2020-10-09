@@ -3,6 +3,10 @@ Code for population, biodiversity & forest cover change attribution analyses
 
 _This repository contains the code for the statistical analyses in "Landscape-scale forest loss as a catalyst of population and biodiversity change"._
 
+Now published as:
+Daskalova, G. N., Myers-Smith, I. H., Bjorkman, A. D., Blowes, S. A., Supp, S. R., Magurran, A. E., & Dornelas, M. (2020). Landscape-scale forest loss as a catalyst of population and biodiversity change. Science, 368(6497), 1341-1347.
+https://science.sciencemag.org/content/368/6497/1341.abstract
+
 Authors: Gergana Daskalova, Isla Myers-Smith, Anne Bjorkman, Sarah Supp, Shane Blowes, Anne Magurran, Maria Dornelas
 
 #### Contact: Gergana Daskalova gndaskalova@gmail.com
